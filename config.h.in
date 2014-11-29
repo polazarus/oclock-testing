@@ -1,5 +1,8 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* Define if function clock_getres exists. */
+#undef HAVE_FUNC_CLOCK_GETRES
+
 /* Define if function clock_gettime exists. */
 #undef HAVE_FUNC_CLOCK_GETTIME
 

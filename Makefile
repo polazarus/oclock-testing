@@ -2,10 +2,10 @@ include Makefile.config
 
 CCFLAGS+=-std=c11
 
-all: wallclock
+all: wallclock$(EXEEXT)
 
-# let's use this implicit rules
-
+%$(EXEEXT): %.c
+	$(LINK.c) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 clean:
 	$(RM) wallclock wallclock.exe
