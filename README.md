@@ -11,14 +11,20 @@ Clocks of `clock_gettime`
 -------------------------
 
 ### POSIX
-  * `CLOCK_REALTIME`: found in Linux, BSD (FreeBSD, DragonFly, NetBSD,
-    OpenBSD), AIX, QNX
 
+  * `CLOCK_REALTIME`
   * `CLOCK_MONOTONIC`
+  * `CLOCK_PROCESS_CPUTIME_ID` if `_POSIX_CPUTIME` is defined
+  * `CLOCK_THREAD_CPUTIME_ID` if `_POSIX_THREAD_CPUTIME` is defined
 
-Source: open group
+Also, functions:
+  * `clock_getcpuclockid` if `_POSIX_CPUTIME` is defined
+  * `pthread_getcpuclockid` if `_POSIX_THREAD_CPUTIME` is defined
+
+Source: [Open Group Base Specifications Issue 7](http://pubs.opengroup.org/onlinepubs/9699919799/functions/clock_getres.html)
 
 ### Linux
+
   * `CLOCK_REALTIME`
   * `CLOCK_MONOTONIC`: does not tick when system is suspend, contrarily to
     what POSIX prescribes
@@ -29,15 +35,19 @@ Source: open group
   * `CLOCK_MONOTONIC_COARSE`: since 2.6.32
   * `CLOCK_BOOTTIME`: since 2.6.39, like `CLOCK_MONOTONIC` but ticks in
     suspend, i.e. it's the true `CLOCK_MONOTONIC` (!!)
-  * `CLOCK_REALTIME_ALARM`: since 3.0, like `CLOCK_REALTIME`, but also wakes
-    suspended system
+  * `CLOCK_REALTIME_ALARM`: since 3.0, like `CLOCK_REALTIME`, but also
+    wakes suspended system
   * `CLOCK_BOOTTIME_ALARM`: since 3.0, like `CLOCK_BOOTTIME`, idem
   * `CLOCK_TAI`: since 3.10, "Temps Atomic International" (International
     Atomic Time)
 
+Also, functions:
+  * `clock_getcpuclockid`
+  * `pthread_getcpuclockid`
+
 Sources:
-  * [Source code](https://github.com/torvalds/linux/blob/master/include/uapi/linux/time.h)
-  * man page
+  * [source code](https://github.com/torvalds/linux/blob/master/include/uapi/linux/time.h)
+  * [man page](http://man7.org/linux/man-pages/man2/clock_gettime.2.html)
 
 ### OpenBSD
 
@@ -47,8 +57,12 @@ Sources:
   * `CLOCK_THREAD_CPUTIME_ID`
   * `CLOCK_UPTIME`: time the system has been running
 
+Also, functions:
+  * `clock_getcpuclockid`
+  * `pthread_getcpuclockid`
+
 Source:
-  * [Source code](http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/sys/sys/_time.h)
+  * [source code](http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/sys/sys/_time.h)
   * [man page](http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man2/clock_getres.2)
 
 ### NetBSD
@@ -58,9 +72,43 @@ Source:
   * `CLOCK_VIRTUAL`
   * `CLOCK_PROF`
 
-http://cvsweb.netbsd.org/bsdweb.cgi/src/sys/sys/time.h
+Source: [source code](http://cvsweb.netbsd.org/bsdweb.cgi/src/sys/sys/time.h)
 
-### FreeBSD, DragonFly
+### FreeBSD
+
+  * `CLOCK_REALTIME`
+  * `CLOCK_MONOTONIC`
+  * `CLOCK_UPTIME`: time the system have been running (`CLOCK_MONOTONIC` minus
+    time in suspend)
+  * `CLOCK_VIRTUAL`
+  * `CLOCK_PROF`
+  * `CLOCK_REALTIME_FAST`
+  * `CLOCK_MONOTONIC_FAST`
+  * `CLOCK_REALTIME_PRECISE`
+  * `CLOCK_MONOTONIC_PRECISE`
+  * `CLOCK_UPTIME_FAST`
+  * `CLOCK_UPTIME_PRECISE`
+  * `CLOCK_PROCESS_CPUTIME_ID`
+  * `CLOCK_THREAD_CPUTIME_ID`
+
+Also, functions:
+  * `clock_getcpuclockid`
+  * `pthread_getcpuclockid`
+
+Source:
+  * [source code](https://github.com/freebsd/freebsd/blob/master/include/time.h)
+  * [man page](http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man2/clock_getres.2)
+
+### NetBSD
+
+  * `CLOCK_REALTIME`
+  * `CLOCK_MONOTONIC`
+  * `CLOCK_VIRTUAL`
+  * `CLOCK_PROF`
+
+Source: [source code](http://cvsweb.netbsd.org/bsdweb.cgi/src/sys/sys/time.h)
+
+### DragonFly
 
   * `CLOCK_REALTIME`
   * `CLOCK_MONOTONIC`
@@ -74,9 +122,7 @@ http://cvsweb.netbsd.org/bsdweb.cgi/src/sys/sys/time.h
   * `CLOCK_UPTIME_FAST`
   * `CLOCK_UPTIME_PRECISE`
 
-Source:
-  * [DragonFly source code](https://github.com/DragonFlyBSD/DragonFlyBSD/blob/master/include/time.h)
-  * [FreeBSD source code](https://github.com/freebsd/freebsd/blob/master/include/time.h)
+Source: [source code](https://github.com/DragonFlyBSD/DragonFlyBSD/blob/master/include/time.h)
 
 ### AIX
 
@@ -85,15 +131,21 @@ Source:
   * `CLOCK_PROCESS_CPUTIME_ID`
   * `CLOCK_THREAD_CPUTIME_ID`
 
+Also, functions:
+  * `clock_getcpuclockid`
+  * `pthread_getcpuclockid`
+
 Source: [man page](http://www-01.ibm.com/support/knowledgecenter/ssw_aix_61/com.ibm.aix.basetrf1/clock_getres.htm)
 
 ### Solaris
+
   * `CLOCK_REALTIME`
   * `CLOCK_HIGHRES`: high-resolution monotonic, same source as `gethrtime`
 
 Source: [man page](https://docs.oracle.com/cd/E36784_01/html/E36874/clock-gettime-3c.html)
 
 ### HP-UX
+
   * `CLOCK_REALTIME`
   * `CLOCK_VIRTUAL`
   * `CLOCK_PROFILE`
@@ -101,10 +153,36 @@ Source: [man page](https://docs.oracle.com/cd/E36784_01/html/E36874/clock-gettim
 Source: [man page](http://h20565.www2.hp.com/hpsc/doc/public/display?docId=emr_na-c02259401)
 
 ### QNX
+
   * `CLOCK_SOFTTIME`: like `CLOCK_REALTIME`, active only when the
-    processor isn.'t in a power-saving mode
+    processor isn't in a power-saving mode
+
+Also, functions:
+  * `clock_getcpuclockid`
+  * `pthread_getcpuclockid`
 
 Source: [man page](http://www.qnx.com/developers/docs/660/topic/com.qnx.doc.neutrino.lib_ref/topic/c/clock_gettime.html)
+
+`gethr*time` functions
+----------------------
+
+### `gethrtime`
+
+HP-UX, Solaris
+
+Returns a signed 64-bit integer in nanoseconds.
+
+Source:
+*  [HP-UX man page](http://h20565.www2.hp.com/hpsc/doc/public/display?docId=emr_na-c02263260)
+*  [Solaris man page](https://docs.oracle.com/cd/E36784_01/html/E36874/gethrtime-3c.html)
+
+### `gethrvtime`
+
+Solaris
+
+`v` for virtual time
+
+Returns a signed 64-bit integer in nanoseconds.
 
 Cross-compiling notes
 ---------------------
