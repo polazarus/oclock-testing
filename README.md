@@ -225,10 +225,36 @@ Source:
 Source: [Solaris man page](https://docs.oracle.com/cd/E36784_01/html/E36874/gethrtime-3c.html)
 
 
-MacOS X's `mach_absolute_time`
-------------------------------
+MacOS X
+-------
 
-`mach_timebase_info`
+### `clock_get_time` defined in `mach/clock.h`
+
+Monotonic time in nanoseconds.
+
+    ~~~~ C
+    /* once */
+    clock_serv_t host_clock;
+    kern_return_t kr = host_get_clock_service(mach_host_self(), SYSTEM_CLOCK, &host_clock);
+    assert(kr == KERNEL_SUCCESS);
+
+    mach_timespec_t now;
+    clock_get_time(host_clock, &now);
+    ~~~~
+
+Montonic clocks:
+  * `SYSTEM_CLOCK` since boottime
+  * `CALENDAR_CLOCK` since the Epoch
+  * (deprecated) `REALTIME_CLOCK`, now a synonym for `SYSTEM_CLOCK`
+
+Source: <https://opensource.apple.com/source/xnu/xnu-2782.1.97/osfmk/mach/clock_types.h>
+
+
+### `mach_absolute_time`
+
+`mach_timebase_info` to get the time unit as a rational
+
+Source: <https://opensource.apple.com/source/xnu/xnu-2782.1.97/osfmk/mach/mach_time.h>
 
 
 Cross-compiling notes
