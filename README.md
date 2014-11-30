@@ -7,12 +7,53 @@ Various experiments on time implementation for OClock.
 make
 ~~~~
 
-Clocks of `clock_gettime`
+Windows
+-------
+
+### `GetSystemTimeAsFileTime`
+*Windows 2000*
+
+Time period since the "Windows Epoch", in hundreds of nanoseconds (10⁻⁷ s).
+Subject to any time adjustement on the machine.
+
+### `GetSystemTimePreciseAsFileTime`
+*at least Windows 8, Windows Server 2012*
+
+Idem but more precise.
+
+### `GetTickCount`, monotonic
+*Windows 2000*
+
+Time period in milliseconds since the system was started.
+Monotonic
+
+### `GetTickCount64`, monotonic
+*at least Vista, Windows Server 2008*
+
+Time period in milliseconds since the system was started.
+
+### `QueryPerformanceCounter`, monotonic
+*Windows 2000*
+
+Get value of counter started at an unspecified time in the past, that is
+incremented at a certain frequency. The frequency can be fetch as an
+integer in Hz through `QueryPerformanceFrequency`.
+
+Source: [MSDN](http://msdn.microsoft.com/en-us/library/windows/desktop/ms644904%28v=vs.85%29.aspx)
+
+
+### `GetProcessTimes`, process times (real and user)
+*Windows XP, Windows Server 2003*
+
+Source: [MSDN](http://msdn.microsoft.com/en-us/library/ms683223%28VS.85%29.aspx)
+
+
+`clock_gettime` functions
 -------------------------
 
 ### POSIX
 
-  * `CLOCK_REALTIME`
+  * `CLOCK_REALTIME`: time period since the Epoch
   * `CLOCK_MONOTONIC`
   * `CLOCK_PROCESS_CPUTIME_ID` if `_POSIX_CPUTIME` is defined
   * `CLOCK_THREAD_CPUTIME_ID` if `_POSIX_THREAD_CPUTIME` is defined
@@ -163,26 +204,32 @@ Also, functions:
 
 Source: [man page](http://www.qnx.com/developers/docs/660/topic/com.qnx.doc.neutrino.lib_ref/topic/c/clock_gettime.html)
 
+
 `gethr*time` functions
 ----------------------
 
 ### `gethrtime`
+*HP-UX, Solaris*
 
-HP-UX, Solaris
-
-Returns a signed 64-bit integer in nanoseconds.
+Monotonic time as a signed 64-bit integer in nanoseconds.
 
 Source:
-*  [HP-UX man page](http://h20565.www2.hp.com/hpsc/doc/public/display?docId=emr_na-c02263260)
-*  [Solaris man page](https://docs.oracle.com/cd/E36784_01/html/E36874/gethrtime-3c.html)
+  * [HP-UX man page](http://h20565.www2.hp.com/hpsc/doc/public/display?docId=emr_na-c02263260)
+  * [Solaris man page](https://docs.oracle.com/cd/E36784_01/html/E36874/gethrtime-3c.html)
 
 ### `gethrvtime`
+*Solaris*
 
-Solaris
+`v` for virtual time as a signed 64-bit integer in nanoseconds.
 
-`v` for virtual time
+Source: [Solaris man page](https://docs.oracle.com/cd/E36784_01/html/E36874/gethrtime-3c.html)
 
-Returns a signed 64-bit integer in nanoseconds.
+
+MacOS X's `mach_absolute_time`
+------------------------------
+
+`mach_timebase_info`
+
 
 Cross-compiling notes
 ---------------------
