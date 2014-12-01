@@ -95,7 +95,7 @@ Source: [Open Group Base Specifications Issue 7](http://pubs.opengroup.org/onlin
     wakes suspended system
   * `CLOCK_BOOTTIME_ALARM`: since 3.0, like `CLOCK_BOOTTIME`, idem
   * `CLOCK_TAI`: since 3.10, "Temps Atomic International" (International
-    Atomic Time)
+    Atomic Time), UTC without leap seconds
 
 Also, functions:
   * `clock_getcpuclockid`
@@ -120,15 +120,6 @@ Also, functions:
 Source:
   * [source code](http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/sys/sys/_time.h)
   * [man page](http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man2/clock_getres.2)
-
-### NetBSD
-
-  * `CLOCK_REALTIME`
-  * `CLOCK_MONOTONIC`
-  * `CLOCK_VIRTUAL`
-  * `CLOCK_PROF`
-
-Source: [source code](http://cvsweb.netbsd.org/bsdweb.cgi/src/sys/sys/time.h)
 
 ### FreeBSD
 
