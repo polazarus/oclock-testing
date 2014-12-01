@@ -12,6 +12,12 @@
 /* Define if gethvtime */
 #undef HAVE_FUNC_GETHVTIME
 
+/* Define if function GetTickCount exists. */
+#undef HAVE_FUNC_GETTICKCOUNT
+
+/* Define if function GetTickCount64 exists. */
+#undef HAVE_FUNC_GETTICKCOUNT64
+
 /* Define if function gettimeofday exists. */
 #undef HAVE_FUNC_GETTIMEOFDAY
 
@@ -28,10 +34,13 @@
 #undef HAVE_FUNC_MACH_TIMEBASE_INFO
 
 /* Define if function QueryPerformanceCounter exists. */
-#undef HAVE_FUNC_QUERY_PERF_COUNTER
+#undef HAVE_FUNC_QUERY_PERFORMANCE_COUNTER
 
 /* Define if function QueryPerformanceFrequency exists. */
-#undef HAVE_FUNC_QUERY_PERF_FREQUENCY
+#undef HAVE_FUNC_QUERY_PERFORMANCE_FREQUENCY
+
+/* Define if function QueryUnbiaisedInterruptTime exists. */
+#undef HAVE_FUNC_QUERY_UNBIASED_INTERRUPT_TIME
 
 /* Define if function time exists. */
 #undef HAVE_FUNC_TIME

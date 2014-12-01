@@ -630,10 +630,11 @@ HAVE_FUNC_CLOCK_GETRES
 HAVE_FUNC_CLOCK_GETTIME
 HAVE_FUNC_MACH_TIMEBASE_INFO
 HAVE_FUNC_MACH_ABSOLUTE_TIME
+HAVE_FUNC_QUERY_UNBIASED_INTERRUPT_TIME
 HAVE_FUNC_GSTPAFT
 HAVE_FUNC_GSTAFT
-HAVE_FUNC_QUERY_PERF_FREQUENCY
-HAVE_FUNC_QUERY_PERF_COUNTER
+HAVE_FUNC_QUERY_PERFORMANCE_FREQUENCY
+HAVE_FUNC_QUERY_PERFORMANCE_COUNTER
 EGREP
 GREP
 CPP
@@ -2944,16 +2945,46 @@ ac_fn_c_check_func "$LINENO" "QueryPerformanceCounter" "ac_cv_func_QueryPerforma
 if test "x$ac_cv_func_QueryPerformanceCounter" = xyes; then :
 
 
-$as_echo "#define HAVE_FUNC_QUERY_PERF_COUNTER 1" >>confdefs.h
+$as_echo "#define HAVE_FUNC_QUERY_PERFORMANCE_COUNTER 1" >>confdefs.h
 
 
 fi
+
 
 ac_fn_c_check_func "$LINENO" "QueryPerformanceFrequency" "ac_cv_func_QueryPerformanceFrequency"
 if test "x$ac_cv_func_QueryPerformanceFrequency" = xyes; then :
 
 
-$as_echo "#define HAVE_FUNC_QUERY_PERF_FREQUENCY 1" >>confdefs.h
+$as_echo "#define HAVE_FUNC_QUERY_PERFORMANCE_FREQUENCY 1" >>confdefs.h
+
+
+fi
+
+
+ac_fn_c_check_func "$LINENO" "QueryUnbiasedInterruptTime" "ac_cv_func_QueryUnbiasedInterruptTime"
+if test "x$ac_cv_func_QueryUnbiasedInterruptTime" = xyes; then :
+
+
+$as_echo "#define HAVE_FUNC_QUERY_UNBIASED_INTERRUPT_TIME 1" >>confdefs.h
+
+
+fi
+
+
+ac_fn_c_check_func "$LINENO" "GetTickCount" "ac_cv_func_GetTickCount"
+if test "x$ac_cv_func_GetTickCount" = xyes; then :
+
+
+$as_echo "#define HAVE_FUNC_GETTICKCOUNT 1" >>confdefs.h
+
+
+fi
+
+ac_fn_c_check_func "$LINENO" "GetTickCount64" "ac_cv_func_GetTickCount64"
+if test "x$ac_cv_func_GetTickCount64" = xyes; then :
+
+
+$as_echo "#define HAVE_FUNC_GETTICKCOUNT64 1" >>confdefs.h
 
 
 fi
@@ -2967,6 +2998,7 @@ $as_echo "#define HAVE_FUNC_GSTAFT 1" >>confdefs.h
 
 
 fi
+
 
 ac_fn_c_check_func "$LINENO" "GetSystemTimePreciseAsFileTime" "ac_cv_func_GetSystemTimePreciseAsFileTime"
 if test "x$ac_cv_func_GetSystemTimePreciseAsFileTime" = xyes; then :
@@ -3023,7 +3055,7 @@ ac_fn_c_check_func "$LINENO" "clock_gettime" "ac_cv_func_clock_gettime"
 if test "x$ac_cv_func_clock_gettime" = xyes; then :
 
 
-$as_echo "#define HAVE_FUNC_CLOCK_GETTIME HAVE_FUNC_CLOCK_GETTIME1" >>confdefs.h
+$as_echo "#define HAVE_FUNC_CLOCK_GETTIME 1" >>confdefs.h
 
 
 else
@@ -3556,6 +3588,7 @@ fi
 
 
 # Checks for library functions.
+
 
 
 
