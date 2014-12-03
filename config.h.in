@@ -6,11 +6,14 @@
 /* Define if function clock_gettime exists. */
 #undef HAVE_FUNC_CLOCK_GETTIME
 
+/* Define if clock_get_time exists. */
+#undef HAVE_FUNC_CLOCK_GET_TIME
+
 /* Define if gethrtime */
 #undef HAVE_FUNC_GETHRTIME
 
-/* Define if gethvtime */
-#undef HAVE_FUNC_GETHVTIME
+/* Define if gethrvtime */
+#undef HAVE_FUNC_GETHRVTIME
 
 /* Define if function GetTickCount exists. */
 #undef HAVE_FUNC_GETTICKCOUNT
@@ -26,6 +29,9 @@
 
 /* Define if GetSystemTimePreciseAsFileTime exists. */
 #undef HAVE_FUNC_GSTPAFT
+
+/* Define if host_get_clock_service exists. */
+#undef HAVE_FUNC_HOST_GET_CLOCK_SERVICE
 
 /* Define if mach_absolute_time exists. */
 #undef HAVE_FUNC_MACH_ABSOLUTE_TIME
@@ -47,6 +53,15 @@
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the <mach/clock.h> header file. */
+#undef HAVE_MACH_CLOCK_H
+
+/* Define to 1 if you have the <mach/mach.h> header file. */
+#undef HAVE_MACH_MACH_H
+
+/* Define to 1 if you have the <mach/mach_time.h> header file. */
+#undef HAVE_MACH_MACH_TIME_H
 
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
