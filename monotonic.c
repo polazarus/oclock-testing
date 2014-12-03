@@ -1,6 +1,9 @@
 #include "config.h"
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <inttypes.h>
+
 
 #if defined(HAVE_FUNC_GETTIMEOFDAY) && defined(HAVE_SYS_TIME_H)
 #include <sys/time.h>
@@ -14,9 +17,13 @@
 #include <windows.h>
 #endif
 
-#include <stdio.h>
-#include <inttypes.h>
-
+#if defined(HAVE_MACH_MACH_H)
+#include <mach/mach.h>
+#include <mach/clock.h>
+# if defined(HAVE_FUNC_MACH_ABSOLUTE_TIME)
+#  include <mach/mach_time.h>
+# endif
+#endif
 
 #define SECS 1000000000llu
 #define USECS 1000llu
@@ -102,8 +109,22 @@ void main() {
 
 #if defined(HAVE_FUNC_QUERY_UNBIASED_INTERRUPT_TIME) // Windows 7, Server 2008 R2
   QueryUnbiasedInterruptTime(&value);
+  // assert !=0;
   value *= 100;
   printf("QueryUnbiasedInterruptTime %" PRId64 "\n", value);
 #endif
 
+#if defined(HAVE_FUNC_CLOCK_GET_TIME)
+  {
+    clock_serv_t host_clock;
+    kern_return_t kr = host_get_clock_service(mach_host_self(),
+      SYSTEM_CLOCK, &host_clock);
+    //assert(kr == KERNEL_SUCCESS);
+
+    mach_timespec_t ts;
+    clock_get_time(host_clock, &ts);
+    value = ts.tv_sec* SECS + ts.tv_nsec;
+    printf("clock_get_time(SYSTEM)     %" PRId64 "\n",value);
+  }
+#endif
 }

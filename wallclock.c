@@ -1,6 +1,9 @@
 #include "config.h"
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <inttypes.h>
+
 
 #if defined(HAVE_FUNC_GETTIMEOFDAY) && defined(HAVE_SYS_TIME_H)
 #include <sys/time.h>
@@ -14,8 +17,10 @@
 #include <windows.h>
 #endif
 
-#include <stdio.h>
-#include <inttypes.h>
+#if defined(HAVE_MACH_MACH_H)
+#include <mach/mach.h>
+#include <mach/clock.h>
+#endif
 
 
 #define SECS 1000000000LL
@@ -77,4 +82,19 @@ void main() {
     printf("time                       %" PRId64 "\n",value);
   }
 #endif
+
+#if defined(HAVE_FUNC_CLOCK_GET_TIME)
+  {
+    clock_serv_t host_clock;
+    kern_return_t kr = host_get_clock_service(mach_host_self(),
+      CALENDAR_CLOCK, &host_clock);
+    //assert(kr == KERNEL_SUCCESS);
+
+    mach_timespec_t ts;
+    clock_get_time(host_clock, &ts);
+    value = ts.tv_sec* SECS + ts.tv_nsec;
+    printf("clock_get_time(CALENDAR)     %" PRId64 "\n",value);
+  }
+#endif
+
 }
