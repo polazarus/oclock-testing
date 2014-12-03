@@ -65,7 +65,7 @@ AC_CHECK_HEADERS([mach/mach.h],[
 
   AC_CHECK_HEADERS([mach/clock.h],[
 
-    AC_CHECK_FUNC([clock_get_time],[],[
+    AC_CHECK_FUNC([clock_get_time],[
       AC_DEFINE([HAVE_FUNC_CLOCK_GET_TIME],[1],
                 [Define if clock_get_time exists.])
     ])

@@ -3460,8 +3460,6 @@ _ACEOF
     ac_fn_c_check_func "$LINENO" "clock_get_time" "ac_cv_func_clock_get_time"
 if test "x$ac_cv_func_clock_get_time" = xyes; then :
 
-else
-
 
 $as_echo "#define HAVE_FUNC_CLOCK_GET_TIME 1" >>confdefs.h
 
