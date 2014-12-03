@@ -127,4 +127,14 @@ void main() {
     printf("clock_get_time(SYSTEM)     %" PRId64 "\n",value);
   }
 #endif
+
+#if defined(HAVE_FUNC_MACH_ABSOLUTE_TIME) && defined(HAVE_FUNC_MACH_TIMEBASE_INFO)
+  {
+    mach_timebase_info_data_t sTimebaseInfo = {0};
+    if (sTimebaseInfo.denom == 0) mach_timebase_info(&sTimebaseInfo);
+    /* 1/1 on Intel, what about possible overflows? */
+    value = mach_absolute_time() * sTimebaseInfo.numer / sTimebaseInfo.denom;
+    printf("mach_absolute_time         %" PRId64 "\n",value);
+  }
+#endif
 }
