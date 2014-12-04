@@ -114,6 +114,16 @@ void main() {
   printf("QueryUnbiasedInterruptTime %" PRId64 "\n", value);
 #endif
 
+#if defined(HAVE_FUNC_QUERY_PERFORMANCE_COUNTER)
+  {
+    LARGE_INTEGER counter, freq;
+    QueryPerformanceCounter(&counter);
+    QueryPerformanceFrequency(&freq);
+    value = (uint64_t)(int64_t)((double)counter.QuadPart * 1e9 / (double)freq.QuadPart);
+    printf("QueryPerformanceCounter    %" PRId64 "\n", value);
+  }
+#endif
+
 #if defined(HAVE_FUNC_CLOCK_GET_TIME)
   {
     clock_serv_t host_clock;
