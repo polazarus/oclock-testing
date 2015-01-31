@@ -1,6 +1,8 @@
 Windows
 =======
 
+Windows Epoch is January 1, 1601, which happens 11,644,473,600s before Unix Epoch.
+
 ## `GetSystemTimeAsFileTime`
 *Windows 2000 Pro., Windows 2000 Server*
 
