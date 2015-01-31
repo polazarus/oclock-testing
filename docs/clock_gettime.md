@@ -1,19 +1,19 @@
 `clock_gettime` family of functions
 ===================================
 
-    ~~~~ C
-    // time.h
-    int clock_getres(clockid_t clk_id, struct timespec *res);
-    int clock_gettime(clockid_t clk_id, struct timespec *tp);
-    int clock_settime(clockid_t clk_id, const struct timespec *tp);
-    int clock_getcpuclockid(pid_t pid, clockid_t *clock_id);
+~~~~ C
+// time.h
+int clock_getres(clockid_t clk_id, struct timespec *res);
+int clock_gettime(clockid_t clk_id, struct timespec *tp);
+int clock_settime(clockid_t clk_id, const struct timespec *tp);
+int clock_getcpuclockid(pid_t pid, clockid_t *clock_id);
 
-    // pthread.h time.h
-    int pthread_getcpuclockid(pthread_t thread, clockid_t *clock_id);
-    ~~~~
+// pthread.h time.h
+int pthread_getcpuclockid(pthread_t thread, clockid_t *clock_id);
+~~~~
 
 
-### POSIX
+## POSIX
 
   * `CLOCK_REALTIME`: time period since the Epoch
   * `CLOCK_MONOTONIC`
@@ -26,7 +26,7 @@ Also, functions:
 
 Source: [Open Group Base Specifications Issue 7](http://pubs.opengroup.org/onlinepubs/9699919799/functions/clock_getres.html)
 
-### Linux
+## Linux
 
   * `CLOCK_REALTIME`
   * `CLOCK_MONOTONIC`: does not tick when system is suspend, contrarily to
@@ -52,6 +52,8 @@ Sources:
   * [source code](https://github.com/torvalds/linux/blob/master/include/uapi/linux/time.h)
   * [man page](http://man7.org/linux/man-pages/man2/clock_gettime.2.html)
 
+## BSD
+
 ### OpenBSD
 
   * `CLOCK_REALTIME`
@@ -64,7 +66,7 @@ Also, functions:
   * `clock_getcpuclockid`
   * `pthread_getcpuclockid`
 
-Source:
+Sources:
   * [source code](http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/sys/sys/_time.h)
   * [man page](http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man2/clock_getres.2)
 
@@ -89,9 +91,9 @@ Also, functions:
   * `clock_getcpuclockid`
   * `pthread_getcpuclockid`
 
-Source:
+Sources:
   * [source code](https://github.com/freebsd/freebsd/blob/master/include/time.h)
-  * [man page](http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man2/clock_getres.2)
+  * [man page](https://www.freebsd.org/cgi/man.cgi?query=clock_gettime)
 
 ### NetBSD
 
@@ -100,7 +102,9 @@ Source:
   * `CLOCK_VIRTUAL`
   * `CLOCK_PROF`
 
-Source: [source code](http://cvsweb.netbsd.org/bsdweb.cgi/src/sys/sys/time.h)
+Sources:
+  * [source code](http://cvsweb.netbsd.org/bsdweb.cgi/src/sys/sys/time.h)
+  * [man page](http://netbsd.gw.com/cgi-bin/man-cgi?clock_getres+2+NetBSD-current)
 
 ### DragonFly
 
@@ -116,7 +120,11 @@ Source: [source code](http://cvsweb.netbsd.org/bsdweb.cgi/src/sys/sys/time.h)
   * `CLOCK_UPTIME_FAST`
   * `CLOCK_UPTIME_PRECISE`
 
-Source: [source code](https://github.com/DragonFlyBSD/DragonFlyBSD/blob/master/include/time.h)
+Sources:
+  * [source code](https://github.com/DragonFlyBSD/DragonFlyBSD/blob/master/include/time.h)
+  * [man page](http://leaf.dragonflybsd.org/cgi/web-man?command=clock_gettime&section=2)
+
+## Unix
 
 ### AIX
 
@@ -145,6 +153,8 @@ Source: [man page](https://docs.oracle.com/cd/E36784_01/html/E36874/clock-gettim
   * `CLOCK_PROFILE`
 
 Source: [man page](http://h20565.www2.hp.com/hpsc/doc/public/display?docId=emr_na-c02259401)
+
+## Others
 
 ### QNX
 
