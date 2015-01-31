@@ -11,16 +11,17 @@ Clock functions
 ---------------
 
   * [Windows](docs/windows.md)
-  * [`clock_gettime` family of functions](docs/clock_gettime.md)
-  * [`gethrtime` family of functions](docs/gethrtime.md)
+  * Unix/Linux
+      * [`clock_gettime` family of functions](docs/clock_gettime.md)
+      * [`gethrtime` family of functions](docs/gethrtime.md)
   * [MacOS X](docs/macosx.md)
 
 Similar docs:
 
   * [Python PEP 418](https://www.python.org/dev/peps/pep-0418)
 
-    Says weird thing about `GetSystemTimeAdjustment`.
-    But overall very interesting
+    Says weird things about `GetSystemTimeAdjustment`.
+    But overall very interesting.
 
   * [C/C++ tip: How to measure elapsed real time for benchmarking](http://nadeausoftware.com/articles/2012/04/c_c_tip_how_measure_elapsed_real_time_benchmarking)
 
