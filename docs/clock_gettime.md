@@ -126,6 +126,19 @@ Sources:
 
 ## Unix
 
+### MacOS X
+
+ * `CLOCK_REALTIME`
+ * `CLOCK_MONOTONIC`: contains suspend (POSIX!)
+ * `CLOCK_MONOTONIC_RAW`
+ * `CLOCK_MONOTONIC_RAW_APPROX`
+ * `CLOCK_UPTIME_RAW`
+ * `CLOCK_UPTIME_RAW_APPROX`
+ * `CLOCK_PROCESS_CPUTIME_ID`
+ * `CLOCK_THREAD_CPUTIME_ID`
+ 
+ Sources: [man page](http://www.manpagez.com/man/3/clock_gettime/)
+ 
 ### AIX
 
   * `CLOCK_REALTIME`
